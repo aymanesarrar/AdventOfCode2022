@@ -10,4 +10,7 @@ const sum = (arr: string[]) => {
     const data = (await processData()).toString("utf-8").split(/\n\s*\n/);
    const sums = data.map(element => sum(element.split("\n")))
    console.log(Math.max(...sums))
+   // for top three
+   const SumTopThree = sums.sort((a,b) => b - a).splice(0,3).reduce((prev, curr) => prev + curr, 0);
+   console.log(SumTopThree)
 })()
