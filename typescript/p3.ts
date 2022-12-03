@@ -9,12 +9,17 @@ const processData = async () => {
 const alpha = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const map = alpha.split("");
 
-const check_repeat = (
-  firstSet: Array<string>,
-  secondSet: Array<string>
-): number => {
+const check_repeat = (set: Array<string>): number => {
+  console.log(set);
+  const firstSet = set[0].split("");
+  const secondSet = set[1].split("");
+  const thirdSet = set[2].split("");
+
   for (let element in firstSet) {
-    if (secondSet.indexOf(firstSet[element]) !== -1)
+    if (
+      secondSet.indexOf(firstSet[element]) !== -1 &&
+      thirdSet.indexOf(firstSet[element]) !== -1
+    )
       return map.indexOf(firstSet[element]) + 1;
   }
   return 0;
@@ -23,10 +28,13 @@ const check_repeat = (
 (async () => {
   const data = (await processData()).toString("utf-8").split("\n");
   let sum = 0;
-  data.forEach((element) => {
-    let firstHalf = [...new Set(element.slice(0, element.length / 2))];
-    let secondHalf = [...new Set(element.slice(element.length / 2))];
-    sum += check_repeat(firstHalf, secondHalf);
+  let arrays = [];
+  let numbers = [];
+  while (data.length > 0) {
+    arrays.push(data.splice(0, 3));
+  }
+  arrays.forEach((group) => {
+    numbers.push(check_repeat(group));
   });
-  console.log(sum);
+  console.log(numbers.reduce((a, b) => a + b, 0));
 })();
