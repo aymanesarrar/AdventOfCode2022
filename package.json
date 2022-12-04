@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node ./typescript/p3.ts"
+    "dev": "ts-node ./typescript/p4.ts"
   },
   "keywords": [],
   "author": "",
