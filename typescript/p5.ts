@@ -35,12 +35,15 @@ const stacks: Stacks = {
 };
 
 const manipulateStacks = (stacks: Stacks, lineParsed: lineParsed[]) => {
+  const pushTo = [];
   for (let element of lineParsed) {
     for (let i = 0; i < element.quantity; i++) {
-      stacks[element.to.toString()].push(
-        stacks[element.from.toString()].at(-1)
-      );
+      pushTo.push(stacks[element.from.toString()].at(-1));
       stacks[element.from.toString()].pop();
+    }
+    for (let i = 0; i < element.quantity; i++) {
+      stacks[element.to.toString()].push(pushTo.at(-1));
+      pushTo.pop();
     }
   }
 };
