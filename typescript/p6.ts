@@ -16,9 +16,9 @@ const getSubArray = (array: Array<string>, index: number, count: number) => {
 };
 const getMarker = (data: Array<string>) => {
   for (let index = 0; index < data.length; index++) {
-    let chunk = getSubArray(data, index, 4);
-    console.log(chunk);
-    if ([...new Set(chunk)].length === chunk.length) return index + 4;
+    let chunk = getSubArray(data, index, 14);
+
+    if ([...new Set(chunk)].length === chunk.length) return index + 14;
   }
   return 0;
 };
